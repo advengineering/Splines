@@ -47,6 +47,9 @@
             // 
             // pictureBox1
             // 
+            this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBox1.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.pictureBox1.Location = new System.Drawing.Point(32, 38);
             this.pictureBox1.Name = "pictureBox1";
@@ -56,6 +59,8 @@
             // 
             // vScrollBar1
             // 
+            this.vScrollBar1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.vScrollBar1.Location = new System.Drawing.Point(9, 38);
             this.vScrollBar1.Maximum = 5000;
             this.vScrollBar1.Minimum = -5000;
@@ -66,6 +71,8 @@
             // 
             // vScrollBar2
             // 
+            this.vScrollBar2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.vScrollBar2.Location = new System.Drawing.Point(796, 38);
             this.vScrollBar2.Maximum = 5000;
             this.vScrollBar2.Minimum = -5000;
@@ -111,6 +118,7 @@
             this.textBox_df1.Location = new System.Drawing.Point(32, 10);
             this.textBox_df1.Multiline = true;
             this.textBox_df1.Name = "textBox_df1";
+            this.textBox_df1.ReadOnly = true;
             this.textBox_df1.Size = new System.Drawing.Size(53, 21);
             this.textBox_df1.TabIndex = 5;
             this.textBox_df1.Text = "0";
@@ -120,22 +128,27 @@
             this.textBox_ddf1.Location = new System.Drawing.Point(146, 10);
             this.textBox_ddf1.Multiline = true;
             this.textBox_ddf1.Name = "textBox_ddf1";
+            this.textBox_ddf1.ReadOnly = true;
             this.textBox_ddf1.Size = new System.Drawing.Size(53, 21);
             this.textBox_ddf1.TabIndex = 5;
+            this.textBox_ddf1.Text = "0";
             // 
             // textBox_ddfn
             // 
             this.textBox_ddfn.Location = new System.Drawing.Point(653, 7);
             this.textBox_ddfn.Multiline = true;
             this.textBox_ddfn.Name = "textBox_ddfn";
+            this.textBox_ddfn.ReadOnly = true;
             this.textBox_ddfn.Size = new System.Drawing.Size(53, 21);
             this.textBox_ddfn.TabIndex = 5;
+            this.textBox_ddfn.Text = "0";
             // 
             // textBox_dfn
             // 
             this.textBox_dfn.Location = new System.Drawing.Point(763, 8);
             this.textBox_dfn.Multiline = true;
             this.textBox_dfn.Name = "textBox_dfn";
+            this.textBox_dfn.ReadOnly = true;
             this.textBox_dfn.Size = new System.Drawing.Size(53, 21);
             this.textBox_dfn.TabIndex = 5;
             this.textBox_dfn.Text = "0";
@@ -195,7 +208,10 @@
             this.Controls.Add(this.vScrollBar2);
             this.Controls.Add(this.vScrollBar1);
             this.Controls.Add(this.pictureBox1);
+            this.DoubleBuffered = true;
             this.Name = "MainForm";
+            this.Load += new System.EventHandler(this.MainForm_Load);
+            this.SizeChanged += new System.EventHandler(this.MainForm_SizeChanged);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
             this.ResumeLayout(false);
