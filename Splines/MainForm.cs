@@ -73,6 +73,8 @@ namespace Splines {
                 textBox_dfn.Text = $"{-splineModel.Dfn:0.0000}";
                 textBox_ddf1.Text = $"{-splineModel.Ddf1:0.0000}";
                 textBox_ddfn.Text = $"{-splineModel.Ddfn:0.0000}";
+
+                Application.DoEvents();
             }
         }
 
