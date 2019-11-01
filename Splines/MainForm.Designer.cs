@@ -51,11 +51,13 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBox1.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.pictureBox1.Location = new System.Drawing.Point(32, 38);
+            this.pictureBox1.Location = new System.Drawing.Point(32, 34);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(761, 400);
+            this.pictureBox1.Size = new System.Drawing.Size(761, 405);
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
+            this.pictureBox1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseDown);
+            this.pictureBox1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseMove);
             // 
             // vScrollBar1
             // 
@@ -65,7 +67,7 @@
             this.vScrollBar1.Maximum = 5000;
             this.vScrollBar1.Minimum = -5000;
             this.vScrollBar1.Name = "vScrollBar1";
-            this.vScrollBar1.Size = new System.Drawing.Size(20, 400);
+            this.vScrollBar1.Size = new System.Drawing.Size(20, 405);
             this.vScrollBar1.TabIndex = 1;
             this.vScrollBar1.ValueChanged += new System.EventHandler(this.vScrollBar1_ValueChanged);
             // 
@@ -77,15 +79,15 @@
             this.vScrollBar2.Maximum = 5000;
             this.vScrollBar2.Minimum = -5000;
             this.vScrollBar2.Name = "vScrollBar2";
-            this.vScrollBar2.Size = new System.Drawing.Size(20, 400);
+            this.vScrollBar2.Size = new System.Drawing.Size(20, 405);
             this.vScrollBar2.TabIndex = 1;
             this.vScrollBar2.ValueChanged += new System.EventHandler(this.vScrollBar1_ValueChanged);
             // 
             // numericUpDown1
             // 
-            this.numericUpDown1.Location = new System.Drawing.Point(357, 8);
+            this.numericUpDown1.Location = new System.Drawing.Point(338, 9);
             this.numericUpDown1.Maximum = new decimal(new int[] {
-            10,
+            20,
             0,
             0,
             0});
@@ -105,11 +107,11 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(412, 8);
+            this.button1.Location = new System.Drawing.Point(393, 9);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(108, 20);
             this.button1.TabIndex = 4;
-            this.button1.Text = "Generate";
+            this.button1.Text = "Создать кривую";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
@@ -125,7 +127,7 @@
             // 
             // textBox_ddf1
             // 
-            this.textBox_ddf1.Location = new System.Drawing.Point(146, 10);
+            this.textBox_ddf1.Location = new System.Drawing.Point(128, 10);
             this.textBox_ddf1.Multiline = true;
             this.textBox_ddf1.Name = "textBox_ddf1";
             this.textBox_ddf1.ReadOnly = true;
@@ -135,7 +137,7 @@
             // 
             // textBox_ddfn
             // 
-            this.textBox_ddfn.Location = new System.Drawing.Point(653, 7);
+            this.textBox_ddfn.Location = new System.Drawing.Point(760, 7);
             this.textBox_ddfn.Multiline = true;
             this.textBox_ddfn.Name = "textBox_ddfn";
             this.textBox_ddfn.ReadOnly = true;
@@ -145,7 +147,7 @@
             // 
             // textBox_dfn
             // 
-            this.textBox_dfn.Location = new System.Drawing.Point(763, 8);
+            this.textBox_dfn.Location = new System.Drawing.Point(667, 8);
             this.textBox_dfn.Multiline = true;
             this.textBox_dfn.Name = "textBox_dfn";
             this.textBox_dfn.ReadOnly = true;
@@ -165,7 +167,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(112, 13);
+            this.label2.Location = new System.Drawing.Point(94, 13);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(28, 13);
             this.label2.TabIndex = 6;
@@ -174,7 +176,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(619, 13);
+            this.label3.Location = new System.Drawing.Point(726, 13);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(28, 13);
             this.label3.TabIndex = 6;
@@ -183,7 +185,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(735, 13);
+            this.label4.Location = new System.Drawing.Point(639, 11);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(22, 13);
             this.label4.TabIndex = 6;
@@ -194,7 +196,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.ClientSize = new System.Drawing.Size(825, 447);
+            this.ClientSize = new System.Drawing.Size(825, 452);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);

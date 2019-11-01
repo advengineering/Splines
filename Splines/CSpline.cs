@@ -6,6 +6,7 @@ namespace Splines {
         private readonly CPoint[] points;
         private readonly CSplineSubinterval[] splineSubintervals;
 
+        public CPoint[] Points { get { return points; } }
         /// <summary>
         /// Df первой точки
         /// </summary>
@@ -48,18 +49,21 @@ namespace Splines {
         }
 
 
-        public void GenerateSplines() {
+        /// <summary>
+        /// 
+        /// </summary>
+        public void GenerateSplines(double val) {
             const double x1 = 0;
             var y1 = BuildSplineSubintervals(x1);
 
-            const double x2 = 10;
+            double x2 = val;
             var y2 = BuildSplineSubintervals(x2);
 
             points[0].Ddf = -y1 * (x2 - x1) / (y2 - y1);
 
             BuildSplineSubintervals(points[0].Ddf);
 
-            points[points.Length - 1].Ddf = splineSubintervals[splineSubintervals.Length - 1].Ddf(points[points.Length - 1].X);
+            points[points.Length - 1].Ddf = splineSubintervals[splineSubintervals.Length - 1].calcDdf(points[points.Length - 1].X);
         }
 
 
@@ -75,8 +79,8 @@ namespace Splines {
             for (var i = 0; i < splineSubintervals.Length; i++) {
                 splineSubintervals[i] = new CSplineSubinterval(points[i], points[i + 1], df, ddf);
 
-                df = splineSubintervals[i].Df(points[i + 1].X);
-                ddf = splineSubintervals[i].Ddf(points[i + 1].X);
+                df = splineSubintervals[i].calcDf(points[i + 1].X);
+                ddf = splineSubintervals[i].calcDdf(points[i + 1].X);
 
                 if (i < splineSubintervals.Length - 1) {
                     points[i + 1].Df = df;

@@ -6,6 +6,7 @@ namespace Splines {
     public partial class MainForm : Form {
         private CSpline splineModel;
         private Bitmap bmp;
+        private CPoint selectedPoint;
 
 
         public MainForm() {
@@ -20,8 +21,6 @@ namespace Splines {
 
 
         private void PictureBox1_Paint(object sender, PaintEventArgs e) {
-            System.Console.WriteLine("pb paint");
-
             e.Graphics.DrawImage(bmp, 1, 1);
         }
 
@@ -61,15 +60,14 @@ namespace Splines {
                 splineModel.Df1 = vScrollBar1.Value / 1000.0f;
                 splineModel.Dfn = vScrollBar2.Value / 1000.0f;
 
-                splineModel.GenerateSplines();
+                splineModel.GenerateSplines(decimal.ToInt32(numericUpDown1.Maximum));
             }
         }
 
 
         private void GetDerivatesFromModel() {
             if (splineModel != null) {                
-                textBox_df1.Invoke(new Action(() => textBox_df1.Text = $"{-splineModel.Df1:0.0000}"));
-                //textBox_df1.Text = $"{-splineModel.Df1:0.0000}";
+                textBox_df1.Text = $"{-splineModel.Df1:0.0000}";
                 textBox_dfn.Text = $"{-splineModel.Dfn:0.0000}";
                 textBox_ddf1.Text = $"{-splineModel.Ddf1:0.0000}";
                 textBox_ddfn.Text = $"{-splineModel.Ddfn:0.0000}";
@@ -81,8 +79,6 @@ namespace Splines {
 
         private void Draw() {
             if (splineModel != null) {
-                System.Console.WriteLine("main form draw");
-
                 Graphics canvas = Graphics.FromImage(bmp);
                 splineModel.Draw(canvas);
 
@@ -97,8 +93,38 @@ namespace Splines {
             this.SetStyle(ControlStyles.AllPaintingInWmPaint | ControlStyles.UserPaint | ControlStyles.DoubleBuffer, true);
         }
 
+
         private void MainForm_SizeChanged(object sender, EventArgs e) {
             bmp = new Bitmap(pictureBox1.Width, pictureBox1.Height);
+        }
+
+
+        private void pictureBox1_MouseDown(object sender, MouseEventArgs e) {
+            Console.WriteLine("x: " + e.X + "; y: " + e.Y);
+
+            if ((splineModel != null) && (splineModel.Points != null)) {
+                foreach (CPoint point in splineModel.Points) {
+                    if ((point.X >= e.X - 4) && (point.X <= e.X + 4) && (point.Y >= e.Y - 4) && (point.Y <= e.Y + 4)) {
+                        Console.WriteLine("Что-то есть. Координаты точки: " + point.X + ':' + point.Y);
+
+                        selectedPoint = point;
+                    }
+                }
+            }
+        }
+
+
+        private void pictureBox1_MouseMove(object sender, MouseEventArgs e) {
+            if (e.Button == MouseButtons.Left) {
+                if (selectedPoint != null) {
+                    selectedPoint.X = e.X;
+                    selectedPoint.Y = e.Y;
+
+                    SetD1ToModel();
+                    GetDerivatesFromModel();
+                    Draw();
+                }
+            }
         }
     }
 }

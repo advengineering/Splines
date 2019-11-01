@@ -4,6 +4,9 @@ using System.Windows.Forms;
 
 namespace Splines {
     internal class CSplineSubinterval : IDraw {
+        /// <summary>
+        /// Полином
+        /// </summary>
         public double A { get; }
         public double B { get; }
         public double C { get; }
@@ -25,26 +28,32 @@ namespace Splines {
         }
 
 
-        public double F(int x) {
+        /// <summary>
+        /// Полином третей степени
+        /// </summary>
+        /// <param name="x"></param>
+        /// <returns></returns>
+        public double calcF(int x) {
             return A * Math.Pow(x - point1.X, 3) + B * Math.Pow(x - point1.X, 2) + C * (x - point1.X) + D;
         }
 
 
-        public double Df(int x) {
+        public double calcDf(int x) {
             return 3 * A * Math.Pow(x - point1.X, 2) + 2 * B * (x - point1.X) + C;
         }
 
 
-        public double Ddf(int x) {
+        public double calcDdf(int x) {
             return 6 * A * (x - point1.X) + 2 * B;
         }
 
 
         public void Draw(Graphics canvas) {
-            System.Console.WriteLine("subinterval draw");
-
             for (int x = point1.X; x < point2.X; x++) {
-                canvas.DrawLine(pen, x, (int) F(x), x + 1, (int) F(x + 1));
+                int y1 = (int) calcF(x);
+                int y2 = (int) calcF(x + 1);
+
+                canvas.DrawLine(pen, x, y1, x + 1, y2);
             }
         }
     }
