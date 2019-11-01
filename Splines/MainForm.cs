@@ -48,6 +48,11 @@ namespace Splines {
         }
 
 
+        /// <summary>
+        /// Обработчик движения прокрутки (левой и правой, т.е. первой точки и последней)
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void vScrollBar1_ValueChanged(object sender, EventArgs e) {
             SetD1ToModel();
             GetDerivatesFromModel();
@@ -65,6 +70,9 @@ namespace Splines {
         }
 
 
+        /// <summary>
+        /// Отображение значений диференциальных функций первой и последних точек
+        /// </summary>
         private void GetDerivatesFromModel() {
             if (splineModel != null) {                
                 textBox_df1.Text = $"{-splineModel.Df1:0.0000}";
@@ -105,7 +113,7 @@ namespace Splines {
             if ((splineModel != null) && (splineModel.Points != null)) {
                 foreach (CPoint point in splineModel.Points) {
                     if ((point.X >= e.X - 4) && (point.X <= e.X + 4) && (point.Y >= e.Y - 4) && (point.Y <= e.Y + 4)) {
-                        Console.WriteLine("Что-то есть. Координаты точки: " + point.X + ':' + point.Y);
+                        Console.WriteLine("Координаты точки: " + point.X + ':' + point.Y);
 
                         selectedPoint = point;
                     }

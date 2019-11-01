@@ -33,27 +33,31 @@ namespace Splines {
         /// </summary>
         /// <param name="x"></param>
         /// <returns></returns>
-        public double calcF(int x) {
+        public double CalcF(int x) {
             return A * Math.Pow(x - point1.X, 3) + B * Math.Pow(x - point1.X, 2) + C * (x - point1.X) + D;
         }
 
 
-        public double calcDf(int x) {
+        public double CalcDf(int x) {
             return 3 * A * Math.Pow(x - point1.X, 2) + 2 * B * (x - point1.X) + C;
         }
 
 
-        public double calcDdf(int x) {
+        public double CalcDdf(int x) {
             return 6 * A * (x - point1.X) + 2 * B;
         }
 
 
         public void Draw(Graphics canvas) {
             for (int x = point1.X; x < point2.X; x++) {
-                int y1 = (int) calcF(x);
-                int y2 = (int) calcF(x + 1);
+                int y1 = (int) CalcF(x);
+                int y2 = (int) CalcF(x + 1);
 
-                canvas.DrawLine(pen, x, y1, x + 1, y2);
+                try {
+                    canvas.DrawLine(pen, x, y1, x + 1, y2);
+                } catch (Exception) {
+                    break;
+                }
             }
         }
     }

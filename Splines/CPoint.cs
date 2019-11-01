@@ -15,8 +15,6 @@ namespace Splines {
         }
 
         public void Draw(Graphics canvas) {
-            System.Console.WriteLine("point draw");
-
             double angleDf = Math.Atan(Df);
 
             canvas.DrawLine(new Pen(Color.Blue), (int) (X - Math.Cos(angleDf) * 50), (int) (Y - Math.Sin(angleDf) * 50), (int) (X + Math.Cos(angleDf) * 50), (int) (Y + Math.Sin(angleDf) * 50));
